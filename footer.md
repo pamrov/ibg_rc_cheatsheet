@@ -2,6 +2,8 @@
 # Useful links
 
  - [Official RC documentation](https://curc.readthedocs.io/en/latest/)
+ - [RC Training Materials] (https://github.com/ResearchComputing/Final_Tutorials)
+ - [RC Frequently Asked Questions] (https://curc.readthedocs.io/en/latest/faq.html)
 
 # Modifying this README
 
