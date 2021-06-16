@@ -1,0 +1,23 @@
+#!/bin/bash
+# sreport for user and X days ago
+#
+# Test for no command line input
+if [ $# -eq 0 ]
+  then
+    echo "usage: suuser [userid] [days, default 30]"
+    exit 1
+fi
+
+# Test for no Slurm module or native slurm
+if [[ $(which squeue 2>&1 |grep "no squeue") ]];
+  then
+    echo "Slum required, please load a Slurm module and try again."
+    exit 1
+fi
+
+
+if [[ -z $2 ]]; then days=30; else days=$2;fi
+user=$1
+if [[ $user == *"@"* ]]; then match=`echo $user| awk -F@ '{print $1}'` ; else match=$user; fi
+echo "SU used by user $user in the last $days days:"
+sreport  -t hours -P cluster AccountUtilizationByUser start=`date +%Y-%m-%d -d "$days days ago"` tree user=$user |sed 1,4d
